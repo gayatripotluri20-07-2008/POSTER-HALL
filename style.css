@@ -1,0 +1,233 @@
+
+/* 1. Basic page settings */
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --background: #f3f7f6;
+    --surface: #ffffff;
+    --primary: #153b42;
+    --accent: #6342c7;
+    --text: #203638;
+    --muted: #39b6a7;
+    --border: #dce7e4;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* 2. Header and branding */
+.site-header {
+    background: var(--primary);
+    color: white;
+    padding: 36px 8% 48px;
+    text-align: left;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-icon {
+    color: var(--accent);
+    font-size: 32px;
+}
+
+.brand h1 {
+    margin: 0;
+    font-size: 30px;
+    letter-spacing: -1px;
+}
+
+.tagline {
+    margin: 4px 0 28px;
+    color: #c7dddc;
+}
+
+/* 3. Search control */
+.search-form {
+    max-width: 760px;
+}
+
+.search-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #e0eeeb;
+}
+
+.search-controls {
+    display: flex;
+    gap: 12px;
+}
+
+#search-input {
+    flex: 1;
+    min-width: 0;
+    padding: 15px 16px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    font-size: 15px;
+    background: white;
+    color: var(--text);
+}
+
+#search-input:focus {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+#search-button {
+    padding: 14px 22px;
+    border: none;
+    border-radius: 10px;
+    background: var(--accent);
+    color: var(--primary);
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* 4. Main content */
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 42px 6%;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 20px;
+}
+
+.eyebrow {
+    color: #287b69;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 0 0 6px;
+}
+
+.section-heading h2 {
+    margin: 0;
+    font-size: clamp(23px, 3vw, 34px);
+    line-height: 1.25;
+}
+
+.result-count {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* 5. Original feature: topic suggestion chips */
+.suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin: 28px 0;
+}
+
+.suggestion-label {
+    margin-right: 4px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.chip {
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 8px 16px;
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+}
+
+.chip:hover {
+    border-color: var(--accent);
+    background: #e6f7f1;
+}
+
+/* 6. Original feature: empty-state message */
+.empty-state {
+    min-height: 190px;
+    margin: 0 0 28px;
+    padding: 30px 16px;
+    border: 1px dashed #a9c6bd;
+    border-radius: 14px;
+    background: #eaf4f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+}
+
+.empty-icon {
+    color: #287b69;
+    font-size: 35px;
+}
+
+.empty-state strong {
+    font-size: 19px;
+}
+
+.empty-state span:last-child {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* 7. Responsive image results grid */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+/* 8. Footer */
+.site-footer {
+    padding: 22px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+}
+
+/* 9. Small-screen layout */
+@media (max-width: 600px) {
+    .site-header {
+        padding: 28px 6% 36px;
+    }
+
+    .search-controls {
+        flex-direction: column;
+    }
+
+    #search-button {
+        width: 100%;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .main-content {
+        padding: 30px 5%;
+    }
+
+    .results-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}

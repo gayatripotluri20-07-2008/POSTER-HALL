@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PosterHall | Image Discovery</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="brand">
+            <span class="brand-icon">✦</span>
+            <h1>POSTERHALL</h1>
+        </div>
+
+        <p class="tagline">
+            Find inspiration in every image.
+        </p>
+
+        <form id="search-form" class="search-form">
+            <label for="search-input">What would you like to discover?</label>
+
+            <div class="search-controls">
+                <input
+                    id="search-input"
+                    type="search"
+                    placeholder="Try nature, architecture, animals..."
+                    aria-label="Enter a topic to search for images"
+                >
+
+                <button id="search-button" type="button">
+                    Search <span aria-hidden="true">→</span>
+                </button>
+            </div>
+        </form>
+    </header>
+
+    <main class="main-content">
+
+        <section class="discover-section">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">YOUR NEXT INSPIRATION</p>
+                    <h2>Explore the world visually.</h2>
+                </div>
+
+                <span class="result-count" id="result-count">
+                    Results will appear here
+                </span>
+            </div>
+
+            <div class="suggestions">
+                <span class="suggestion-label">Explore topics</span>
+
+                <button class="chip" type="button">Nature</button>
+                <button class="chip" type="button">Cities</button>
+                <button class="chip" type="button">Animals</button>
+                <button class="chip" type="button">Space</button>
+            </div>
+
+            <p class="empty-state" id="status">
+                <span class="empty-icon" aria-hidden="true">✧</span>
+                <strong>Ready to explore?</strong>
+                <span>Search for a topic to discover a world of images.</span>
+            </p>
+
+            <section id="results" class="results-grid"
+                aria-label="Image search results">
+            </section>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>Made with curiosity. Designed for discovery.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
