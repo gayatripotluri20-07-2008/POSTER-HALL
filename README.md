@@ -1,4 +1,14 @@
+# Poster Hall
 
-# PosterHall — Image Discovery
+Poster Hall is a responsive web interface for discovering and browsing posters. This project uses HTML, CSS, and JavaScript to create a simple, clean, and user-friendly layout.
 
-VistaFind is a responsive image-search app where users will be able to search for topics and explore related images. I chose a dark teal and mint colour palette to create a calm, modern visual identity that differs from the reference project. I added topic suggestion chips so users can quickly discover common search ideas. I also designed an empty-state message to explain what users should do before any search results appear. This is Part 1 of the project, so image fetching and rendering will be implemented later.
+## Design Choices
+
+- **Responsive Grid Layout:** CSS Grid helps display poster cards in columns that adjust to different screen sizes.
+- **Simple User Interface:** A clear header, search bar, and empty-results message make the interface easy to understand.
+
+## Technologies Used
+
+- HTML
+- CSS
+- JavaScript
