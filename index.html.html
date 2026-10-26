@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Poster Hall | Discover Something Inspiring</title>
+
+    <!-- Connect CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Connect JavaScript after the HTML is parsed -->
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="brand">
+            <h1>Poster Hall</h1>
+            <p>Discover something inspiring.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="intro">
+            <h2>Find Your Next Favourite Image</h2>
+            <p>Search for a topic and explore images from around the world.</p>
+        </section>
+
+        <section class="search-section">
+            <form id="search-form">
+                <label for="search-input">
+                    What would you like to discover?
+                </label>
+
+                <div class="search-controls">
+                    <input
+                        type="search"
+                        id="search-input"
+                        name="query"
+                        placeholder="Try cats, flowers, football..."
+                        autocomplete="off"
+                        required
+                    >
+
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="suggestions" aria-label="Popular searches">
+            <p>Explore popular topics:</p>
+
+            <button type="button" class="suggestion-chip" data-query="Nature">
+                Nature
+            </button>
+
+            <button type="button" class="suggestion-chip" data-query="Animals">
+                Animals
+            </button>
+
+            <button type="button" class="suggestion-chip" data-query="Football">
+                Football
+            </button>
+
+            <button type="button" class="suggestion-chip" data-query="Space">
+                Space
+            </button>
+        </section>
+
+        <!-- Messages for loading, errors and result counts -->
+        <p id="status" class="status-message" role="status" aria-live="polite">
+            Type a word and search to discover images.
+        </p>
+
+        <p id="result-count" class="result-count" aria-live="polite"></p>
+
+        <!-- JavaScript adds image cards here -->
+        <section
+            id="results"
+            class="results-grid"
+            aria-label="Image search results"
+        ></section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Poster Hall — Discover. Explore. Get Inspired.</p>
+        <p>Images provided by Wikimedia Commons.</p>
+    </footer>
+</body>
+</html>
