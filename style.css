@@ -1,233 +1,243 @@
 
-/* 1. Basic page settings */
+
+/* General page styling */
 * {
     box-sizing: border-box;
-}
-
-:root {
-    --background: #f3f7f6;
-    --surface: #ffffff;
-    --primary: #153b42;
-    --accent: #6342c7;
-    --text: #203638;
-    --muted: #39b6a7;
-    --border: #dce7e4;
 }
 
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: var(--background);
-    color: var(--text);
+    background-color: #f5f3ff;
+    color: #25213b;
     line-height: 1.6;
 }
 
-/* 2. Header and branding */
+/* Website header */
 .site-header {
-    background: var(--primary);
+    background-color: #5b3cc4;
     color: white;
-    padding: 36px 8% 48px;
-    text-align: left;
-}
-
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.brand-icon {
-    color: var(--accent);
-    font-size: 32px;
+    padding: 24px 20px;
+    text-align: center;
 }
 
 .brand h1 {
     margin: 0;
-    font-size: 30px;
-    letter-spacing: -1px;
+    font-size: 2.3rem;
 }
 
-.tagline {
-    margin: 4px 0 28px;
-    color: #c7dddc;
+.brand p {
+    margin: 4px 0 0;
 }
 
-/* 3. Search control */
-.search-form {
-    max-width: 760px;
+/* Main content */
+.container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+    padding: 30px 0;
 }
 
-.search-form label {
+.intro {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.intro h2 {
+    margin-bottom: 8px;
+    font-size: 1.8rem;
+}
+
+/* Search form */
+.search-section {
+    max-width: 700px;
+    margin: 0 auto 24px;
+}
+
+.search-section label {
     display: block;
     margin-bottom: 8px;
-    font-size: 14px;
-    color: #e0eeeb;
+    font-weight: bold;
 }
 
 .search-controls {
     display: flex;
-    gap: 12px;
+    gap: 10px;
 }
 
-#search-input {
+.search-controls input {
     flex: 1;
     min-width: 0;
-    padding: 15px 16px;
-    border: 2px solid transparent;
-    border-radius: 10px;
-    font-size: 15px;
-    background: white;
-    color: var(--text);
+    padding: 13px;
+    border: 1px solid #c9c1e8;
+    border-radius: 8px;
+    font-size: 1rem;
 }
 
-#search-input:focus {
-    outline: 3px solid var(--accent);
-    outline-offset: 2px;
-}
-
-#search-button {
-    padding: 14px 22px;
-    border: none;
-    border-radius: 10px;
-    background: var(--accent);
-    color: var(--primary);
-    font-size: 15px;
-    font-weight: bold;
+button {
     cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
 }
 
-/* 4. Main content */
-.main-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 42px 6%;
+.search-controls button {
+    padding: 12px 22px;
+    background-color: #5b3cc4;
+    color: white;
 }
 
-.section-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    gap: 20px;
+.search-controls button:hover {
+    background-color: #452a9f;
 }
 
-.eyebrow {
-    color: #287b69;
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin: 0 0 6px;
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid #a99af0;
+    outline-offset: 3px;
 }
 
-.section-heading h2 {
-    margin: 0;
-    font-size: clamp(23px, 3vw, 34px);
-    line-height: 1.25;
+/* Popular search buttons */
+.suggestions {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.suggestions p {
+    margin-bottom: 10px;
+}
+
+.suggestion-chip {
+    margin: 4px;
+    padding: 8px 14px;
+    background-color: #e5defe;
+    color: #39247e;
+}
+
+.suggestion-chip:hover {
+    background-color: #d3c6ff;
+}
+
+/* Loading, empty and error messages */
+.status-message,
+.result-count {
+    text-align: center;
+    margin: 16px 0;
+}
+
+.status-message {
+    font-weight: 500;
+}
+
+.status-message.error {
+    color: #b42318;
+}
+
+.status-message.empty {
+    color: #5b3cc4;
 }
 
 .result-count {
-    color: var(--muted);
-    font-size: 13px;
+    font-size: 0.95rem;
+    color: #5e5874;
 }
 
-/* 5. Original feature: topic suggestion chips */
-.suggestions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-    margin: 28px 0;
+/* Loading spinner */
+.spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    border: 3px solid #ded6ff;
+    border-top-color: #5b3cc4;
+    border-radius: 50%;
+    vertical-align: middle;
+    animation: spin 0.8s linear infinite;
 }
 
-.suggestion-label {
-    margin-right: 4px;
-    font-size: 13px;
-    color: var(--muted);
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
-.chip {
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 8px 16px;
-    background: var(--surface);
-    color: var(--text);
-    cursor: pointer;
-}
-
-.chip:hover {
-    border-color: var(--accent);
-    background: #e6f7f1;
-}
-
-/* 6. Original feature: empty-state message */
-.empty-state {
-    min-height: 190px;
-    margin: 0 0 28px;
-    padding: 30px 16px;
-    border: 1px dashed #a9c6bd;
-    border-radius: 14px;
-    background: #eaf4f0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    gap: 8px;
-}
-
-.empty-icon {
-    color: #287b69;
-    font-size: 35px;
-}
-
-.empty-state strong {
-    font-size: 19px;
-}
-
-.empty-state span:last-child {
-    color: var(--muted);
-    font-size: 14px;
-}
-
-/* 7. Responsive image results grid */
+/* Image results grid */
 .results-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 24px;
 }
 
-/* 8. Footer */
+/* Individual image card */
+.card {
+    overflow: hidden;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(40, 25, 80, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+.card img {
+    display: block;
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    background-color: #e8e4f4;
+}
+
+.card p {
+    padding: 12px;
+    margin: 0;
+    overflow-wrap: anywhere;
+    font-size: 0.95rem;
+}
+
+/* Website footer */
 .site-footer {
-    padding: 22px;
+    padding: 20px;
+    background-color: #25213b;
+    color: white;
     text-align: center;
-    color: var(--muted);
-    font-size: 13px;
-    border-top: 1px solid var(--border);
 }
 
-/* 9. Small-screen layout */
-@media (max-width: 600px) {
-    .site-header {
-        padding: 28px 6% 36px;
+.site-footer p {
+    margin: 5px 0;
+}
+
+/* Tablet layout */
+@media (max-width: 800px) {
+    .results-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Mobile layout */
+@media (max-width: 520px) {
+    .brand h1 {
+        font-size: 1.9rem;
+    }
+
+    .intro h2 {
+        font-size: 1.4rem;
     }
 
     .search-controls {
         flex-direction: column;
     }
 
-    #search-button {
+    .search-controls button {
         width: 100%;
     }
 
-    .section-heading {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .main-content {
-        padding: 30px 5%;
-    }
-
     .results-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: 1fr;
+    }
+
+    .card img {
+        height: 240px;
     }
 }

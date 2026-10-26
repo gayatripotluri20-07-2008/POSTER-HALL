@@ -1,3 +1,4 @@
+
 // ========================================
 // 1. CONNECT JAVASCRIPT TO HTML ELEMENTS
 // ========================================
@@ -5,33 +6,35 @@
 const form = document.getElementById("search-form");
 const input = document.getElementById("search-input");
 const results = document.getElementById("results");
+const status = document.getElementById("status");
 const resultCount = document.getElementById("result-count");
 
+
 // ========================================
-// 2. LISTEN FOR SEARCH FORM SUBMISSION
+// 2. HANDLE SEARCH FORM SUBMISSION
 // ========================================
 
 form.addEventListener("submit", async function (event) {
 
-    // Stop the page from refreshing
+    // Stop the browser from refreshing the page
     event.preventDefault();
 
-    // Get the search text and remove extra spaces
+    // Read the search text and remove extra spaces
     const query = input.value.trim();
 
-    // Do nothing if the search is empty
+    // Ignore an empty search
     if (query === "") {
         return;
     }
 
-    // Clear the previous results
+    // Clear the previous search results
     results.innerHTML = "";
-
-    // Show a loading message
-    results.textContent = "Loading images...";
-
-    // Clear the previous result count
     resultCount.textContent = "";
+
+    // Show the loading state before fetching
+    status.className = "status-message";
+    status.innerHTML =
+        '<span class="spinner" aria-hidden="true"></span> Searching for images...';
 
     // ========================================
     // 3. CREATE THE WIKIMEDIA API URL
@@ -46,42 +49,74 @@ form.addEventListener("submit", async function (event) {
         "&gsrlimit=12" +
         "&prop=imageinfo" +
         "&iiprop=url" +
-        "&iiurlwidth=300" +
+        "&iiurlwidth=400" +
         "&format=json" +
         "&origin=*";
 
     try {
 
         // ========================================
-        // 4. FETCH IMAGES FROM THE API
+        // 4. FETCH DATA FROM THE API
         // ========================================
 
         const response = await fetch(url);
 
-        // Check whether the request was successful
+        // Check whether the request succeeded
         if (!response.ok) {
-            throw new Error("Failed to fetch images");
+            throw new Error("Request failed: " + response.status);
         }
 
         // Convert the response into JavaScript data
         const data = await response.json();
 
-        // Get the list of image results
+        // Get the image results
         const items = Object.values(data.query?.pages || {});
 
+        // Keep only results that contain image information
+        const imageItems = items.filter(function (item) {
+            return item.imageinfo && item.imageinfo[0];
+        });
+
         // ========================================
-        // 5. DISPLAY THE IMAGE RESULTS
+        // 5. HANDLE THE EMPTY STATE
         // ========================================
 
-        renderResults(items, query);
+        if (imageItems.length === 0) {
+            status.className = "status-message empty";
+            status.textContent =
+                'No images found for "' + query + '". Try another search.';
+
+            resultCount.textContent = "";
+            return;
+        }
+
+        // ========================================
+        // 6. HANDLE THE RESULTS STATE
+        // ========================================
+
+        status.className = "status-message";
+        status.textContent = "Search completed successfully!";
+
+        resultCount.textContent =
+            "Showing " + imageItems.length +
+            ' results for "' + query + '".';
+
+        // Display the image cards
+        renderResults(imageItems);
 
     } catch (error) {
 
-        // Display an error message if something goes wrong
+        // ========================================
+        // 7. HANDLE THE ERROR STATE
+        // ========================================
+
         console.error("Error fetching images:", error);
 
-        results.innerHTML =
-            "<p>Sorry, we could not load the images. Please try again.</p>";
+        results.innerHTML = "";
+
+        status.className = "status-message error";
+        status.textContent =
+            "Something went wrong. Please check your internet connection and try again.";
 
         resultCount.textContent = "";
     }
@@ -89,47 +124,30 @@ form.addEventListener("submit", async function (event) {
 
 
 // ========================================
-// 6. CREATE AND DISPLAY IMAGE CARDS
+// 8. CREATE AND DISPLAY IMAGE CARDS
 // ========================================
 
-function renderResults(items, query) {
+function renderResults(items) {
 
-    // Remove any previous results
+    // Clear old results before displaying new cards
     results.innerHTML = "";
 
-    // Keep only results that contain image information
-    const imageItems = items.filter(function (item) {
-        return item.imageinfo && item.imageinfo[0];
-    });
-
-    // Display the number of images found
-    resultCount.textContent =
-        "Showing " + imageItems.length +
-        ' results for "' + query + '"';
-
-    // Display a message if no images are found
-    if (imageItems.length === 0) {
-        results.textContent =
-            'No images found for "' + query + '". Try another search.';
-        return;
-    }
-
-    // Go through each image result
-    imageItems.forEach(function (item) {
+    // Create a card for each image
+    items.forEach(function (item) {
 
         const imageInfo = item.imageinfo[0];
 
-        // Create a card for the image
+        // Create the card element
         const card = document.createElement("article");
         card.className = "card";
 
         // Create the image element
         const img = document.createElement("img");
 
-        // Add the image URL
+        // Set the image URL
         img.src = imageInfo.thumburl || imageInfo.url;
 
-        // Add alternative text for accessibility
+        // Add alternative text
         img.alt = item.title || "Poster Hall image";
 
         // Load images when needed
@@ -138,7 +156,7 @@ function renderResults(items, query) {
         // Create the image caption
         const caption = document.createElement("p");
 
-        // Add the image title
+        // Add the image title as text
         caption.textContent = item.title || "Untitled image";
 
         // Put the image inside the card
@@ -147,14 +165,14 @@ function renderResults(items, query) {
         // Put the caption inside the card
         card.appendChild(caption);
 
-        // Add the card to the results section
+        // Add the card to the results grid
         results.appendChild(card);
     });
 }
 
 
 // ========================================
-// 7. MAKE POPULAR SEARCH BUTTONS WORK
+// 9. MAKE POPULAR SEARCH BUTTONS WORK
 // ========================================
 
 const suggestionButtons =
@@ -164,10 +182,10 @@ suggestionButtons.forEach(function (button) {
 
     button.addEventListener("click", function () {
 
-        // Put the selected topic into the search box
+        // Fill the search box with the selected topic
         input.value = button.dataset.query;
 
-        // Automatically submit the search form
+        // Submit the search automatically
         form.requestSubmit();
     });
 });
