@@ -5,80 +5,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PosterHall | Image Discovery</title>
+    <title>Poster Hall | Discover Something Inspiring</title>
 
-    <link rel="stylesheet" href="styles.css">
+    <!-- Connect the CSS file -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Connect JavaScript in the head.
+         defer waits until HTML parsing is complete. -->
+    <script src="script.js" defer></script>
 </head>
-<body>
 
+<body>
+    <!-- Website header -->
     <header class="site-header">
         <div class="brand">
-            <span class="brand-icon">✦</span>
-            <h1>POSTERHALL</h1>
+            <h1>Poster Hall</h1>
+            <p>Discover something inspiring.</p>
         </div>
-
-        <p class="tagline">
-            Find inspiration in every image.
-        </p>
-
-        <form id="search-form" class="search-form">
-            <label for="search-input">What would you like to discover?</label>
-
-            <div class="search-controls">
-                <input
-                    id="search-input"
-                    type="search"
-                    placeholder="Try nature, architecture, animals..."
-                    aria-label="Enter a topic to search for images"
-                >
-
-                <button id="search-button" type="button">
-                    Search <span aria-hidden="true">→</span>
-                </button>
-            </div>
-        </form>
     </header>
 
-    <main class="main-content">
+    <!-- Main website content -->
+    <main class="container">
 
-        <section class="discover-section">
-            <div class="section-heading">
-                <div>
-                    <p class="eyebrow">YOUR NEXT INSPIRATION</p>
-                    <h2>Explore the world visually.</h2>
+        <!-- Intro section -->
+        <section class="intro">
+            <h2>Find Your Next Favourite Image</h2>
+            <p>Search for a topic and explore images from around the world.</p>
+        </section>
+
+        <!-- Search form -->
+        <section class="search-section">
+            <form id="search-form">
+                <label for="search-input">What would you like to discover?</label>
+
+                <div class="search-controls">
+                    <input
+                        type="search"
+                        id="search-input"
+                        name="query"
+                        placeholder="Try cats, flowers, football..."
+                        autocomplete="off"
+                        required
+                    >
+
+                    <button type="submit">Search</button>
                 </div>
+            </form>
+        </section>
 
-                <span class="result-count" id="result-count">
-                    Results will appear here
-                </span>
-            </div>
+        <!-- Optional quick-search suggestions -->
+        <section class="suggestions" aria-label="Popular searches">
+            <p>Explore popular topics:</p>
 
-            <div class="suggestions">
-                <span class="suggestion-label">Explore topics</span>
+            <button type="button" class="suggestion-chip" data-query="Nature">
+                Nature
+            </button>
 
-                <button class="chip" type="button">Nature</button>
-                <button class="chip" type="button">Cities</button>
-                <button class="chip" type="button">Animals</button>
-                <button class="chip" type="button">Space</button>
-            </div>
+            <button type="button" class="suggestion-chip" data-query="Animals">
+                Animals
+            </button>
 
-            <p class="empty-state" id="status">
-                <span class="empty-icon" aria-hidden="true">✧</span>
-                <strong>Ready to explore?</strong>
-                <span>Search for a topic to discover a world of images.</span>
+            <button type="button" class="suggestion-chip" data-query="Football">
+                Football
+            </button>
+
+            <button type="button" class="suggestion-chip" data-query="Space">
+                Space
+            </button>
+        </section>
+
+        <!-- Result count updated by JavaScript -->
+        <p id="result-count" aria-live="polite"></p>
+
+        <!-- JavaScript inserts image cards here -->
+        <section
+            id="results"
+            class="results-grid"
+            aria-label="Image search results"
+        >
+            <p class="empty-state">
+                Your next favourite image is waiting. Start by searching above!
             </p>
-
-            <section id="results" class="results-grid"
-                aria-label="Image search results">
-            </section>
         </section>
 
     </main>
 
+    <!-- Website footer -->
     <footer class="site-footer">
-        <p>Made with curiosity. Designed for discovery.</p>
+        <p>Poster Hall — Discover. Explore. Get Inspired.</p>
+        <p>Images provided by Wikimedia Commons.</p>
     </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
