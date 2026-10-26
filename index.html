@@ -1,91 +1,84 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Poster Hall | Discover Something Inspiring</title>
+    <title>PosterHall | Image Discovery</title>
 
-    <!-- Connect CSS -->
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Connect JavaScript after the HTML is parsed -->
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
+
     <header class="site-header">
         <div class="brand">
-            <h1>Poster Hall</h1>
-            <p>Discover something inspiring.</p>
+            <span class="brand-icon">✦</span>
+            <h1>POSTERHALL</h1>
         </div>
-    </header>
 
-    <main class="container">
-        <section class="intro">
-            <h2>Find Your Next Favourite Image</h2>
-            <p>Search for a topic and explore images from around the world.</p>
-        </section>
-
-        <section class="search-section">
-            <form id="search-form">
-                <label for="search-input">
-                    What would you like to discover?
-                </label>
-
-                <div class="search-controls">
-                    <input
-                        type="search"
-                        id="search-input"
-                        name="query"
-                        placeholder="Try cats, flowers, football..."
-                        autocomplete="off"
-                        required
-                    >
-
-                    <button type="submit">Search</button>
-                </div>
-            </form>
-        </section>
-
-        <section class="suggestions" aria-label="Popular searches">
-            <p>Explore popular topics:</p>
-
-            <button type="button" class="suggestion-chip" data-query="Nature">
-                Nature
-            </button>
-
-            <button type="button" class="suggestion-chip" data-query="Animals">
-                Animals
-            </button>
-
-            <button type="button" class="suggestion-chip" data-query="Football">
-                Football
-            </button>
-
-            <button type="button" class="suggestion-chip" data-query="Space">
-                Space
-            </button>
-        </section>
-
-        <!-- Messages for loading, errors and result counts -->
-        <p id="status" class="status-message" role="status" aria-live="polite">
-            Type a word and search to discover images.
+        <p class="tagline">
+            Find inspiration in every image.
         </p>
 
-        <p id="result-count" class="result-count" aria-live="polite"></p>
+        <form id="search-form" class="search-form">
+            <label for="search-input">What would you like to discover?</label>
 
-        <!-- JavaScript adds image cards here -->
-        <section
-            id="results"
-            class="results-grid"
-            aria-label="Image search results"
-        ></section>
+            <div class="search-controls">
+                <input
+                    id="search-input"
+                    type="search"
+                    placeholder="Try nature, architecture, animals..."
+                    aria-label="Enter a topic to search for images"
+                >
+
+                <button id="search-button" type="button">
+                    Search <span aria-hidden="true">→</span>
+                </button>
+            </div>
+        </form>
+    </header>
+
+    <main class="main-content">
+
+        <section class="discover-section">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">YOUR NEXT INSPIRATION</p>
+                    <h2>Explore the world visually.</h2>
+                </div>
+
+                <span class="result-count" id="result-count">
+                    Results will appear here
+                </span>
+            </div>
+
+            <div class="suggestions">
+                <span class="suggestion-label">Explore topics</span>
+
+                <button class="chip" type="button">Nature</button>
+                <button class="chip" type="button">Cities</button>
+                <button class="chip" type="button">Animals</button>
+                <button class="chip" type="button">Space</button>
+            </div>
+
+            <p class="empty-state" id="status">
+                <span class="empty-icon" aria-hidden="true">✧</span>
+                <strong>Ready to explore?</strong>
+                <span>Search for a topic to discover a world of images.</span>
+            </p>
+
+            <section id="results" class="results-grid"
+                aria-label="Image search results">
+            </section>
+        </section>
+
     </main>
 
     <footer class="site-footer">
-        <p>Poster Hall — Discover. Explore. Get Inspired.</p>
-        <p>Images provided by Wikimedia Commons.</p>
+        <p>Made with curiosity. Designed for discovery.</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
